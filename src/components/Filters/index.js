@@ -17,8 +17,6 @@ class Filters extends Component {
     }
 }
 
-//export default Filters
-
 export default connect(state => ({
     articles: state.articles
 }))(Filters)

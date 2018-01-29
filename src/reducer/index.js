@@ -7,6 +7,6 @@ import range from './range'
 export default combineReducers({
     counter: counterReducer,
     articles,
+    range,
     select,
-    range
 })

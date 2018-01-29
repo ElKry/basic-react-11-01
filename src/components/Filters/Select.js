@@ -10,11 +10,6 @@ class SelectFilter extends Component {
         articles: PropTypes.array.isRequired
     };
 
-    /* state = {
-        selected: null
-    } */
-
-   // handleChange = selected => this.setState({ selected })
    handleChange = selected => {
        const {selectArticleName} = this.props;
        selectArticleName(selected);
@@ -30,14 +25,12 @@ class SelectFilter extends Component {
         return <Select
             options={options}
             value={this.props.selected}
-            onClick={this.handleChange}
+            onChange={this.handleChange}
             multi
         />
     }
 }
 
-//export default SelectFilter
-
 export default connect(state => ({
-    selected: state.selected
+    selected: state.select
 }), { selectArticleName })(SelectFilter)

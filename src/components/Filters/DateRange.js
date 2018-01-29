@@ -6,12 +6,6 @@ import {selectArticleDate} from '../../AC'
 import 'react-day-picker/lib/style.css'
 
 class DateRange extends Component {
-    /* state = {
-        from: null,
-        to: null
-    } */
-
-    //handleDayClick = (day) => this.setState(DateUtils.addDayToRange(day, this.state))
     handleDayClick = (day) => {
         const {selectArticleDate} = this.props;
         selectArticleDate(DateUtils.addDayToRange(day, this.props));
@@ -33,8 +27,6 @@ class DateRange extends Component {
     }
 
 }
-
-//export default DateRange
 
 export default connect(state => ({
     ...state.range
