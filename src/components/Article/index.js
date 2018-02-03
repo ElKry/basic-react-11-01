@@ -5,15 +5,17 @@ import CSSTransition from 'react-addons-css-transition-group'
 import {connect} from 'react-redux'
 import CommentList from '../CommentList'
 import {deleteArticle} from '../../AC'
+import {createArticleSelector} from '../../selectors'
 import './style.css'
 
 class Article extends PureComponent {
     static propTypes = {
-        article: PropTypes.shape({
+        /*article: PropTypes.shape({
             title: PropTypes.string.isRequired,
             text: PropTypes.string,
             comments: PropTypes.array
-        }).isRequired,
+        }).isRequired,*/
+        id: PropTypes.string,
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
@@ -63,7 +65,8 @@ class Article extends PureComponent {
     }
 
     handleDelete = () => {
-        const {deleteArticle,article} = this.props
+        const {deleteArticle, article} = this.props
+        console.log('---delart', deleteArticle, deleteArticle(article.id))
         deleteArticle(article.id)
     }
 
@@ -85,5 +88,14 @@ class Article extends PureComponent {
 
 }
 
+const createMapStateToProps = () => {
+    const articleSelector = createArticleSelector()
+    return (state, ownProps) => {
+        return {
+            article: articleSelector(state, ownProps),
+            deleteArticle
+        }
+    }
+}
 
-export default connect(null, { deleteArticle })(Article)
+export default connect(createMapStateToProps)(Article)

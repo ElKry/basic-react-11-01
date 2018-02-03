@@ -5,16 +5,26 @@ export const filtersSelector = state => state.filters
 export const commentsSelector = state => state.comments
 export const idSelector = (_, props) => props.id
 
+/*export const articleSelector = createSelector(articlesSelector, idSelector, (articles, id) =>{
+    console.log('---', 'searching for articles', id)
+    return articles.find(article => article.id === id)
+})*/
+
 export const createCommentSelector = () => createSelector(commentsSelector, idSelector, (comments, id) => {
-    console.log('---', 'searching for comment', id)
+    //console.log('---', 'searching for comment', id)
     return comments[id]
 })
 
+export const createArticleSelector = () => createSelector(articlesSelector, idSelector, (articles, id) => {
+    //console.log('---', 'searching for articles', id)
+    return articles[id]
+})
+
 export const filtratedArticlesSelector = createSelector(articlesSelector, filtersSelector, (articles, filters) => {
-    console.log('---', 'computing filters')
+    //console.log('---', 'computing filters')
     const {selected, dateRange: {from, to}} = filters
 
-    return articles.filter(article => {
+    return (Object.values(articles)).filter(article => {
         const published = Date.parse(article.date)
         return (!selected.length || selected.includes(article.id)) &&
             (!from || !to || (published > from && published < to))
