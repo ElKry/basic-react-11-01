@@ -31,6 +31,15 @@ ArticleList.propTypes = {
     articles: PropTypes.array.isRequired
 }
 
-export default connect(state => ({
-    articles: state.articles
-}))(ArticleList)
+export default connect(state => {
+    const selected = state.select;
+    const range = state.range;
+    const filteredArticles = state.articles.filter(article => {
+        const published = Date.parse(article.date);
+        return (!selected.length || selected.includes(article.id)) &&
+            (!range.from || !range.to || (published > range.from && published < range.to))
+    });
+    return {
+        articles: filteredArticles
+    }
+})(ArticleList)

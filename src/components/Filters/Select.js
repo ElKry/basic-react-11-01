@@ -12,7 +12,7 @@ class SelectFilter extends Component {
 
    handleChange = selected => {
        const {selectArticleName} = this.props;
-       selectArticleName(selected);
+       selectArticleName(selected.map(option => option.value));
    }
 
     render() {

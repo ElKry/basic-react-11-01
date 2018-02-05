@@ -16,8 +16,10 @@ class Counter extends Component {
     }
 
     handleIncrement = () => {
-        const action = increment()
-        this.props.dispatch(action)
+        const {increment} = this.props;
+        increment();
+       // const action = increment()
+       // this.props.dispatch(action)
     }
 }
 
@@ -25,4 +27,4 @@ const mapStateToProps = (storeState) => ({
     count: storeState.counter
 })
 
-export default connect(mapStateToProps)(Counter)
+export default connect(mapStateToProps, {increment})(Counter)

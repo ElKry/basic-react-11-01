@@ -1,6 +1,6 @@
 import {SELECT_ARTICLE} from '../constants';
 
-export default (selected = null, action) => {
+export default (selected = [], action) => {
     const {type, payload} = action;
     
     switch (type) {
