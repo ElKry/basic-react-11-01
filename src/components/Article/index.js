@@ -22,6 +22,10 @@ class Article extends Component {
         }),
     }
 
+    static contextTypes = {
+        dictionary: PropTypes.object,
+    }
+
     constructor(props) {
         super(props)
 
@@ -46,7 +50,7 @@ class Article extends Component {
                 <h2 ref = {this.setTitleRef} onClick = {this.increment}>
                     {article.title}
                     <button onClick={toggleOpen}>
-                        {isOpen ? 'close' : 'open'}
+                        {isOpen ? this.context.dictionary.close : this.context.dictionary.open}
                     </button>
                     <button onClick = {this.handleDelete}>
                         delete
@@ -106,5 +110,6 @@ class Article extends Component {
 
 
 export default connect((state, props) => ({
-    article: articleSelector(state, props)
+    article: articleSelector(state, props),
+    dictionary: state.dictionary
 }), { deleteArticle, loadArticle }, null, { pure: false })(Article)

@@ -8,11 +8,13 @@ import Loader from './common/Loader'
 import {NavLink, withRouter} from 'react-router-dom'
 
 class ArticleList extends Accordion {
+
     componentDidMount() {
         this.props.loadAllArticles()
     }
 
     render() {
+        console.log("---conteeeeeeeext", this.context);
         const {articles, loading} = this.props
 
         if (loading) return <Loader />

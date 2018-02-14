@@ -14,3 +14,21 @@ export const LOAD_COMMENTS_FOR_PAGE = 'LOAD_COMMENTS_FOR_PAGE'
 export const START = '_START'
 export const SUCCESS = '_SUCCESS'
 export const FAIL = '_FAIL'
+
+export const DICTIONARY_EN = {
+    articles: "Article list",
+    close: "close",
+    open: "open",
+    delete: "delete",
+    showComments: "show comments",
+    hideComments: "hide comments",
+};
+
+export const DICTIONARY_RU = {
+    articles: "Список статей",
+    close: "закрыть",
+    open: "открыть",
+    delete: "удвлить",
+    showComments: "показать комментарии",
+    hideComments: "скрыть комментарии",
+};

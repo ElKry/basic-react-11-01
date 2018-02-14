@@ -7,29 +7,39 @@ import CounterPage from './routes/Counter'
 import CommentsPage from './routes/CommentsPage'
 import { Route, Redirect, Switch } from 'react-router-dom'
 import Menu, { MenuItem } from './Menu'
+import {DICTIONARY_RU, DICTIONARY_EN} from '../constants'
 
 class App extends Component {
     static childContextTypes = {
-        user: PropTypes.string
-    }
+        user: PropTypes.string,
+        dictionary: PropTypes.object,
+    };
 
     state = {
-        username: 'Roma'
+        username: 'Roma',
+        dictionary: DICTIONARY_EN,
     }
 
     getChildContext() {
         return {
-            user: this.state.username
+            user: this.state.username,
+            dictionary: this.state.dictionary,
         }
     }
 
     handleUserChange = username => this.setState({ username })
 
+    setRu = () => this.setState({dictionary: DICTIONARY_RU})
+    setEn = () => this.setState({dictionary: DICTIONARY_EN})
+
     render() {
-        console.log('---', 1)
         return (
             <div>
                 <h1>App name</h1>
+                <ul>
+                    <li><button onClick = {this.setRu}>ru</button></li>
+                    <li><button onClick = {this.setEn}>en</button></li>
+                </ul>
                 <Menu>
                     <MenuItem to = "/articles">Articles</MenuItem>
                     <MenuItem to = "/filters">Filters</MenuItem>
